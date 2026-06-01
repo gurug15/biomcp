@@ -1,6 +1,12 @@
 from fastmcp import FastMCP
-from fastmcp.server.auth import MultiAuth
+from bio_mcp.tools.gromacsAnalysis import analyze_rmsd
 
-auth_provider = MultiAuth
+mcp = FastMCP(name="BioInfo Analysis MCP")
 
-mcp = FastMCP(name="BioInfo Analyisis MCP")
+mcp.add_tool(analyze_rmsd)
+
+def main():
+    mcp.run(transport="http", host="0.0.0.0", port=8000)
+
+if __name__ == "__main__":
+    main()
